@@ -1,2 +1,4 @@
 <resources>
+    <string name="crash_button_name">Test Crash</string>
+    <string name="channel_name">channel_name</string>
 </resources>

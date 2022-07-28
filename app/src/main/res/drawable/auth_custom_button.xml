@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--When Button is not enabled -->
+    <item android:state_enabled="false">
+        <shape>
+
+            <solid android:color="#D3CFD8" />
+            <corners android:radius="5dp" />
+
+        </shape>
+
+
+    </item>
+    <!--When Button is in pressed state -->
+    <item android:state_pressed="true">
+        <shape>
+
+            <solid android:color="#D3CFD8" />
+            <corners android:radius="5dp" />
+
+        </shape>
+
+
+    </item>
+    <!--When Button is in selected state -->
+    <item android:state_selected="true">
+        <shape>
+
+            <solid android:color="#D3CFD8" />
+            <corners android:radius="5dp" />
+
+        </shape>
+
+
+    </item>
+    <!--Default Background Color -->
+    <item>
+
+        <shape>
+
+            <gradient
+                android:startColor="@color/white"
+                android:centerColor="#8D8D8D"
+                android:endColor="#4D4D4D"/>
+            <corners android:radius="5dp" />
+
+        </shape>
+
+
+    </item>
+
+</selector>
+
+
+
+
