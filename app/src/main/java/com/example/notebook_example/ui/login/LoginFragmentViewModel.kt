@@ -1,71 +1,62 @@
-package com.example.notebook_example
+package com.example.notebook_example.ui.login
 
-import androidx.databinding.BaseObservable
-import androidx.databinding.Bindable
-import androidx.lifecycle.MutableLiveData
+
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.notebook_example.model.ErrorResponseModel
 import com.example.notebook_example.model.UserModel
+import com.example.notebook_example.util.SingleEvent
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class LoginFragmentViewModel : ViewModel() {
 
-    private var userMutableLiveData: MutableLiveData<UserModel>? = null
-    private var userRepository: UserRepository? = null
-    private var observer: Observer = Observer()
+    val loginResponse: SingleEvent<LoginEvent> by lazy { SingleEvent() }
+    private var mFirestore: FirebaseFirestore? = null
 
 
     init {
-        userRepository = UserRepository()
-
+        mFirestore = FirebaseFirestore.getInstance()
     }
 
-    fun getObserver(): Observer {
-        return observer
-    }
+     fun login(email: String, password: String) {
+         var user: UserModel? = null
+        viewModelScope.launch(Dispatchers.Main) {
+            loginResponse.value = LoginEvent.Loading
+            mFirestore!!.collection("users").whereEqualTo("email", email)
+                .whereEqualTo("password", password).addSnapshotListener { value, _ ->
+                        for (doc in value!!) {
+                                user =
+                                    UserModel(
+                                        doc.id,
+                                        doc.data["nameAndSurname"].toString(),
+                                        doc.data["email"].toString(),
+                                        doc.data["password"].toString(),
+                                        doc.data["securityQuestion"].toString(),
+                                        doc.data["questionAnswer"].toString()
+                                    )
+                                loginResponse.value = LoginEvent.Success(loginResponse = user)
 
-
-    fun loginOnclick(): MutableLiveData<UserModel>? {
-        userMutableLiveData = userRepository!!.getUserListMutableLiveData(
-            getObserver().getUserEmail(),
-            getObserver().getUserPassword()
-        )
-        return userMutableLiveData
-    }
-
-
-    class Observer : BaseObservable() {
-        private var userEmail: String
-        private var userPassword: String
-
-        init {
-            userEmail = ""
-            userPassword = ""
-        }
-
-        @Bindable
-        fun getUserEmail(): String {
-            return userEmail
-        }
-
-        fun setUserEmail(email: String?) {
-            if (email != null) {
-                userEmail = email
+                        }
+                    }
+            if (user == null){
+                loginResponse.value = LoginEvent.Failure(errorResponseModel = ErrorResponseModel("Invalid email or password.Please try again!"))
             }
-            notifyPropertyChanged(BR.userEmail)
-        }
 
-        @Bindable
-        fun getUserPassword(): String {
-            return userPassword
-        }
 
-        fun setUserPassword(password: String?) {
-            if (password != null) {
-                userPassword = password
-            }
-            notifyPropertyChanged(BR.userPassword)
 
         }
+
     }
-
+    sealed class LoginEvent {
+        class Success(val loginResponse: UserModel?) : LoginEvent()
+        class Failure(val errorResponseModel: ErrorResponseModel) : LoginEvent()
+        object Loading : LoginEvent()
+        object Empty : LoginEvent()
+    }
 }
+
+
+

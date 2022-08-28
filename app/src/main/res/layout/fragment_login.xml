@@ -7,14 +7,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/auth_background_login"
-        tools:context=".LoginFragment">
+        tools:context=".ui.login.LoginFragment">
 
         <TextView
             android:id="@+id/header_login"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Login"
+            android:text="@string/login"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="25sp"
@@ -31,15 +31,15 @@
             android:layout_marginEnd="50dp"
             android:autofillHints="emailAddress"
             android:background="@drawable/auth_custom_edittext"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
             android:paddingStart="10dp"
             android:paddingTop="10dp"
             android:paddingEnd="10dp"
             android:paddingBottom="10dp"
-            android:textColorHint="@color/white"
             android:textColor="@color/white"
+            android:textColorHint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/header_login" />
@@ -53,15 +53,15 @@
             android:layout_marginEnd="50dp"
             android:autofillHints="password"
             android:background="@drawable/auth_custom_edittext"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:minHeight="48dp"
             android:paddingStart="10dp"
             android:paddingTop="10dp"
             android:paddingEnd="10dp"
             android:paddingBottom="10dp"
-            android:textColorHint="@color/white"
             android:textColor="@color/white"
+            android:textColorHint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/email_login" />
@@ -75,7 +75,7 @@
             android:layout_marginTop="35dp"
             android:layout_marginEnd="75dp"
             android:background="@drawable/auth_custom_button"
-            android:text="Login"
+            android:text="@string/login"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -92,7 +92,7 @@
             android:minHeight="48dp"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
-            android:text="Forgot password?"
+            android:text="@string/forgot_password"
             android:textAlignment="center"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/password_login"
@@ -109,7 +109,7 @@
             android:clickable="true"
             android:focusable="true"
             android:minHeight="48dp"
-            android:text="New User? Register Now"
+            android:text="@string/new_user_register_now"
             android:textAlignment="center"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
@@ -121,12 +121,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="75dp"
-            android:text="or login with"
+            android:text="@string/or_login_with"
             android:textAlignment="center"
             android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/google_button_login"
@@ -136,7 +136,7 @@
             app:buttonSize="icon_only"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login_with"/>
+            app:layout_constraintTop_toBottomOf="@+id/login_with" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,5 @@
 package com.example.notebook_example.model
 
-data class ErrorResponse(
+data class ErrorResponseModel(
     val errorMessage: String
 )

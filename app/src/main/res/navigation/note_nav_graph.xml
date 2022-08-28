@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:id="@+id/note_nav_graph">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/note_nav_graph"
+    app:startDestination="@id/noteListFragment">
 
+    <fragment
+        android:id="@+id/noteListFragment"
+        android:name="com.example.notebook_example.ui.note.NoteListFragment"
+        android:label="fragment_note_list"
+        tools:layout="@layout/fragment_note_list" >
+        <action
+            android:id="@+id/action_noteListFragment_to_newNoteFragment"
+            app:destination="@id/newNoteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newNoteFragment"
+        android:name="com.example.notebook_example.ui.note.NewNoteFragment"
+        android:label="fragment_new_note"
+        tools:layout="@layout/fragment_new_note" >
+        <argument
+            android:name="uid"
+            app:argType="string" />
+        <argument
+            android:name="note"
+            app:argType="com.example.notebook_example.model.NoteModel[]" />
+    </fragment>
 </navigation>

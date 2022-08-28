@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class NoteListViewModel : ViewModel() {
+class NoteListFragmentViewModel : ViewModel() {
 
     val noteListResponse: SingleEvent<NoteListEvent> by lazy { SingleEvent() }
     private var mFirestore: FirebaseFirestore? = null
@@ -36,6 +36,7 @@ class NoteListViewModel : ViewModel() {
                             )
                         notes.add(note)
                     }
+
                 noteListResponse.value = NoteListEvent.Success(noteListResponse = notes)
                 }
 

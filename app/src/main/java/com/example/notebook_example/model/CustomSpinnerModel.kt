@@ -1,3 +1,5 @@
 package com.example.notebook_example.model
 
-data class CustomSpinnerModel()
+data class CustomSpinnerModel(
+    val spinnerText: String
+)
