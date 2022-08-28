@@ -40,12 +40,16 @@ class RegisterFragment : Fragment() {
                     Toast.makeText(requireContext(), "The length of your password must be greater than 6 and the same as confirm password.", Toast.LENGTH_SHORT).show()
                 }
                 else{
-                    val user = UserModel(nameAndSurname, email,password,"What is your favorite animal?","dog", emptyList())
+                    val user = UserModel("",nameAndSurname, email,password,"What is your favorite animal?","dog", emptyList())
                     db.collection("users").add(user).addOnSuccessListener {
                         Toast.makeText(requireContext(), "Registration is success.", Toast.LENGTH_SHORT).show()
                         findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
                     }.addOnFailureListener {
-                        Toast.makeText(requireContext(), "Registration is failure. Please try again later", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            "Registration is failure. Please try again later",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
             }
